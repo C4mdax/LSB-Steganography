@@ -76,7 +76,6 @@ It is free for personal or commercial use with attribution required by mentionin
 ## Contributors
 - **Luis Angel Moreno Delgado**
 - **Edgar Salgado González**
-- **Patricio Salvador González Castillo**
 
 ## Contact
 For any questions or suggestions, you can contact us at this mail **c4mdax@gmail.com**
