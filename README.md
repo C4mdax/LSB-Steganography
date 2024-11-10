@@ -1,81 +1,82 @@
 # HiddenInk
 
-HiddenInk is a C based program that allows you to hide messages inside image archives and recover those text messages
-for later use.
+HiddenInk is a C-based program that allows you to hide messages inside image files and recover those text messages later.
 
 ## Features
-- A way to easily hide any text message inside an image archive without any visible changes in the archive
-- When needed, a fast way to extract
+- Easily hide any text message inside a PNG image without visible changes in the image.
+- Quickly extract hidden messages when needed.
 
-## How do we hide this messages?
+## How does it work?
 
-HiddenInk uses the LSB technique, that means Least Significant Bit technique, which basically means that we first calculate
-the available pixels that composes the image were we're going to hide the message and then replace the least significant
-bit of each channel that composes a single pixel of the image with the desired value to hide  
-
+HiddenInk uses the Least Significant Bit (LSB) technique. This technique involves calculating the available pixels in the image where the message will be hidden and then replacing the least significant bit of each color channel of a pixel with bits of the hidden message.
 
 ## Installation
 
 ### Prerequisites
-To use this program you'll only need to install libpng, SDL1 and SDL2, libpng is an official PNG reference library
-that supports great numbers of operations to a PNG archive that are used in this program and both SDLs are used for
-similar purposes as well. To install, you simply write down on your terminal
+To use this program, install the following libraries:
+- **libpng**: A reference library for PNG files, essential for handling PNG images.
+- **SDL1** and **SDL2**: Used for graphics-related operations on images.
 
-```bash
-sudo apt-get install libpng-dev libsdl1.2-dev libsdl2-dev
-```
+#### Installation Commands by Distribution
 
-### Steps
-In order to install the program, check in your terminal that you are in the directory were you want to install it and then
-follow these steps
+- **Debian/Ubuntu**:
+    ```bash
+    sudo apt-get install libsdl2-dev libsdl2-image-dev libpng-dev
+    ```
 
+- **Arch Linux**:
+    ```bash
+    sudo pacman -S sdl2 sdl2_image libpng
+    ```
+
+- **Gentoo**:
+    ```bash
+    sudo emerge media-libs/libsdl2 media-libs/sdl2-image media-libs/libpng
+    ```
+
+### Steps to Install
 1. Clone the repository:
     ```bash
-    git clone https://github.com/your_username/HiddenInk.git
+    git clone https://github.com/C4mdax/HiddenInk.git
     ```
 2. Navigate to the project directory:
     ```bash
     cd HiddenInk/src
     ```
-3. Compile the program
+3. Compile the program:
     ```bash
     gcc main.c utils.c image.c hider.c revealer.c -o HiddenInk `sdl2-config --cflags --libs` -lSDL2_image -lpng
     ```
 
-## Using the program
-Now after installing you're ready to go!
+## Using HiddenInk
+Once installed, you can start using HiddenInk as follows:
 
-```bash
-./HiddenInk -h ~/route/of/the/text ~/route/of/the/image ~/route/of/the/image/destiny
-```
+- **To hide a message**:
+    ```bash
+    ./HiddenInk -h <path/to/text> <path/to/image> <path/or/name/to/output/image>
+    ```
 
-For extracting the hidden message, you can use execute
+- **To extract a hidden message**:
+    ```bash
+    ./HiddenInk -u <path/to/image/with/hidden/message> <path/or/name/to/output/message>
+    ```
 
-```bash
-./HiddenInk -u ~/route/of/the/image/with/hidden/text ~/route/of/the/message/destiny
-```
+### Supported Image Format
+HiddenInk currently supports PNG image files only.
 
-### Supported Image Archives
-The program only supports PNG archive files
+### Important Considerations
+Before hiding a message, ensure that the image has sufficient capacity to store it. The amount of space required depends on the number of pixels and color channels (3 for RGB or 4 for RGBA). The required bits can be calculated by multiplying the number of pixels by 3 or 4, depending on the image type.
 
-### Some considerations
-One important aspect that you need to considerate before trying to hide a message is that the image has the adequate
-size in order to hide the message because the amount of bits needed could exceed the amount of bits available from
-the image. You can check if you have enough bits by multiplying 3 or 4 times (Depends if its RGB or RGBA) the amount of
-pixels (Long X Short)
-It's possible to extract a message from an image non processed from this program, but if the text was hidden with a
-different process it's almost sure that the extraction will not be possible
+Attempting to extract a message from an image modified by a different tool may result in errors.
 
-## License Agreement
-This work is licensed under Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0).
+## License
+This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0) license. You are free to use this software for personal or commercial purposes with proper attribution.
 
-It is free for personal or commercial use with attribution required by mentioning the use of this work as follows:
-
-> This site or product includes IP2Location™ ISO 3166-2 Subdivision Code which is available from [IP2Location](https://www.ip2location.com).
+> This project includes IP2Location™ ISO 3166-2 Subdivision Code from [IP2Location](https://www.ip2location.com).
 
 ## Contributors
 - **Luis Angel Moreno Delgado**
 - **Edgar Salgado González**
 
 ## Contact
-For any questions or suggestions, you can contact us at this mail **c4mdax@gmail.com**
+For questions or suggestions, contact us at **c4mdax@gmail.com**
